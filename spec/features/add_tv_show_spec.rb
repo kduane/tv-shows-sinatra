@@ -16,6 +16,30 @@ feature "user adds a new TV show" do
   # * If any of the above validations fail, the form should be
   #   re-displayed with the failing validation message.
 
-  pending "successfully add a new show"
-  pending "fail to add a show with invalid information"
+  scenario "successfully add a new show" do 
+    visit "television_shows/new"
+
+    fill_in "title", with: "Grimm"
+    fill_in "network", with: "Some Network"
+    fill_in "starting_year", with: "2011"
+    fill_in "ending_year", with: "2017"
+    fill_in "synopsis", with: "The grimmest fairy tales you've ever seen"
+    click_button "Add TV Show"
+
+    expect(page).to have_content("Grimm (Some Network)")
+  end
+
+  scenario "fail to add a show with invalid information" do
+    visit "television_shows/new"
+
+    fill_in "title", with: nil
+    fill_in "network", with: nil
+    fill_in "starting_year", with: "2011"
+    fill_in "ending_year", with: "2017"
+    fill_in "synopsis", with: "The grimmest fairy tales you've ever seen"
+    click_button "Add TV Show"
+
+    expect(page).to have_content("title can't be blank")
+    expect(page).to have_content("network can't be blank")
+  end
 end

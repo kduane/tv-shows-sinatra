@@ -32,13 +32,30 @@ feature "user views list of TV shows" do
   # As a TV fanatic
   # I want to view the details for a TV show
   # So I can find learn more about it
+  scenario "view details for a TV show" do
+  # first, create some sample TV shows
 
-  # Acceptance Criteria:
-  # * I can see the title, network, start and end year, genre, and synopsis
-  #   for a show.
-  # * If the end year is not provided it should indicate that the show is still
-  #   running.
+  visit "/television_shows/new"
+  fill_in "title", with: "Firefly"
+  fill_in "network", with: "Fox"
+  fill_in "starting_year", with: "2002"
+  fill_in "ending_year", with: "2002"
+  fill_in "synopsis", with: "You can't take the sky from me."
+  click_button "Add TV Show"
+  click_link('Firefly (Fox)')
+    # Acceptance Criteria:
+    # * I can see the title, network, start and end year, genre, and synopsis
+    #   for a show.
+  expect(page).to have_content("Firefly")
+  expect(page).to have_content("Fox")
+  expect(page).to have_content("2002 - 2002")
+  expect(page).to have_content("You can't take the sky from me.")
+    # * If the end year is not provided it should indicate that the show is still
+    #   running.
 
-  pending "view details for a TV show"
+
+
+  end
+
   pending "view details for a TV show with missing information"
 end
