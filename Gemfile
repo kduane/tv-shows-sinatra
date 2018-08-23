@@ -6,6 +6,7 @@ gem "sinatra-contrib"
 gem "sinatra-activerecord", "2.0.13"
 gem "pg", "~> 0.21"
 gem "rake"
+gem "pry"
 
 group :development, :test do
   gem "rspec"

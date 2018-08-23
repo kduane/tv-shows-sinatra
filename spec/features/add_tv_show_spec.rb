@@ -16,7 +16,7 @@ feature "user adds a new TV show" do
   # * If any of the above validations fail, the form should be
   #   re-displayed with the failing validation message.
 
-  scenario "successfully add a new show" do 
+  scenario "successfully add a new show" do
     visit "television_shows/new"
 
     fill_in "title", with: "Grimm"
@@ -39,7 +39,7 @@ feature "user adds a new TV show" do
     fill_in "synopsis", with: "The grimmest fairy tales you've ever seen"
     click_button "Add TV Show"
 
-    expect(page).to have_content("title can't be blank")
-    expect(page).to have_content("network can't be blank")
+    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Network can't be blank")
   end
 end

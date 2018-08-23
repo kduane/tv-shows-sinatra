@@ -1,6 +1,12 @@
 <h1>Add Show</h1>
 
 <form action="/television_shows" method="post">
+  <% if @show.errors.any? %>
+    <% @show.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  <% end %>
+
   <div>
     <label for="title">Title:</label>
     <input type="text" id="title" name="television_show[title]" value="<%= @show.title %>">
